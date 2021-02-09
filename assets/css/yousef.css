@@ -1,0 +1,80 @@
+.firstBox {
+    float: left;
+    width: 300px;
+    height:300px;
+    background:whitesmoke;
+    border-style: solid;
+    border-color: black;
+    border-radius: 25px;
+}
+.secondBox {
+    float: right;
+    width: 900px;
+    height: 300px;
+    background:whitesmoke;
+    border-style: solid;
+    border-color: black;
+    border-radius: 25px;
+}
+.thirdBox {
+    position: fixed;
+    bottom: 10px;
+    width: 1350px;
+    height: 300px;
+    background: whitesmoke;
+    border-style: solid;
+    border-color: black;
+    border-radius: 25px;
+}
+.fourthBox {
+    position: fixed;
+    right: 645px;
+    top: 150px;
+    width: 250px;
+    height: 150px;
+    background: lightblue;
+    border-style: solid;
+    border-color: black;
+    border-radius: 25px;
+}
+.fifthBox {
+    position: fixed;
+    right: 180px;
+    top: 150px;
+    width: 400px;
+    height: 150px;
+    background: lightblue;
+    border-style: solid;
+    border-color: black;
+    border-radius: 25px;
+}
+.title {
+    text-align: center;
+    margin-bottom: 50px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 25px;
+}
+.firstBoxTitle {
+    text-align: center;
+}
+.secondBoxTitle {
+    text-align: center;
+}
+.thirdBoxTitle {
+    text-align: center;
+}
+.fourthBoxTitle {
+    text-align: center;
+}
+.searchBar {
+    left: 10px;
+}
+.bookDetails {
+    text-align: center;
+}
+.findListings {
+    position: fixed;
+    top: 310px;
+    right: 300px;
+}
