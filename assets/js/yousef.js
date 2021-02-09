@@ -13,23 +13,57 @@ let searchBar = document.querySelector(".searchBar");
 let goButton = document.querySelector(".goButton");
 let imageBox = document.querySelector(".fourthBox");
 let author = document.querySelector(".author");
-let bootTitle = document.querySelector(".bookTitle");
+let bookTitle = document.querySelector(".bookTitle");
 let publisher = document.querySelector(".publisher");
 let pageCount = document.querySelector(".pageCount");
 let buyLink = document.querySelector(".buyLink");
 let ebayButton = document.querySelector(".findListings");
-goButton.addEventListener("click", function() {
+let bookList = document.querySelector('.book-list');
+let bookDetails = document.querySelector('.bookDetails');
+
+goButton.addEventListener('click', getApi);
+
+function getApi() {
+
+    bookDetails.innerHTML = [];
+
     fetch('https://www.googleapis.com/books/v1/volumes?q=' + searchBar.value + '')
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            let updateAuthor = data['items'][0]['volumeInfo']['authors'];
-            author.innerHTML = "Author: " + updateAuthor;
-            let updatePublisher = data['items'][0]['volumeInfo']['publisher'];
-            publisher.innerHTML = "Publisher: " + updatePublisher;
-            let updatePageCount = data['items'][0]['volumeInfo']['pageCount'];
-            pageCount.innerHTML = "Page Count: " + updatePageCount;
-            let updateBuyLink = data['items'][0]['saleInfo']['buyLink'];
-            buyLink.innerHTML = "Buy Link: " + updateBuyLink;
+
+            let updateAuthor = document.createElement('p');
+            let updateTitle = document.createElement('p');
+            let updatePublisher = document.createElement('p');
+            let updatePageCount = document.createElement('p');
+            let updateBuyLink = document.createElement('p');
+
+            updateAuthor.textContent = ('Author: ', data['items'][0]['volumeInfo']['authors']);
+            updateTitle.textContent = ('Title: ', data['items'][0]['volumeInfo']['title']);
+            updatePublisher.textContent = ('Publisher: ', data['items'][0]['volumeInfo']['publisher']);
+            updatePageCount.textContent = ('Page Count: ', data['items'][0]['volumeInfo']['pageCount']);
+            updateBuyLink.textContent = data['items'][0]['saleInfo']['buyLink'];
+            buyLink.setAttribute('src', updateBuyLink)
+
+            searchResults(data)
+
         })
-})
+        
+}
+
+function searchResults(data) {
+
+    bookList.innerHTML = null;
+
+    for (let i = 0; i < 5; i++) {
+        var book = document.createElement('div');
+        book.textContent = data['items'][i]['volumeInfo']['title'];
+        book.classList.add('list-item')
+        book.addEventListener('click', getBookInfo)
+        bookList.append(book)
+    }
+}
+
+function getBookInfo() {
+
+}
