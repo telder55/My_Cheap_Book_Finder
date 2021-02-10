@@ -10,38 +10,36 @@
 // Ebay Section
 // Create global variable for DIV with ID "ebay-listings-area" use this variable to create and append elements to this section.
 let searchBar = document.querySelector(".searchBar");
-let goButton = document.querySelector(".goButton");
+let goButton = document.querySelector("#goButton");
 let imageBox = document.querySelector(".fourthBox");
-let author = document.querySelector(".author");
-let bookTitle = document.querySelector(".bookTitle");
-let publisher = document.querySelector(".publisher");
-let pageCount = document.querySelector(".pageCount");
+
+let author = document.getElementById("#author");
+let bookTitle = document.getElementById("#bookTitle");
+let publisher = document.getElementById("#publisher");
+let pageCount = document.getElementById("#pageCount");
 let buyLink = document.querySelector(".buyLink");
+
 let ebayButton = document.querySelector(".findListings");
 let bookList = document.querySelector('.book-list');
-let bookDetails = document.querySelector('.bookDetails');
+let bookDetails = document.getElementById('#bookDetails');
 
 goButton.addEventListener('click', getApi);
 
 function getApi() {
 
-    bookDetails.innerHTML = [];
+    bookDetails.innerHTML = '';
 
     fetch('https://www.googleapis.com/books/v1/volumes?q=' + searchBar.value + '')
         .then(response => response.json())
         .then(data => {
             console.log(data);
 
-            let updateAuthor = document.createElement('p');
-            let updateTitle = document.createElement('p');
-            let updatePublisher = document.createElement('p');
-            let updatePageCount = document.createElement('p');
             let updateBuyLink = document.createElement('p');
 
-            updateAuthor.textContent = ('Author: ', data['items'][0]['volumeInfo']['authors']);
-            updateTitle.textContent = ('Title: ', data['items'][0]['volumeInfo']['title']);
-            updatePublisher.textContent = ('Publisher: ', data['items'][0]['volumeInfo']['publisher']);
-            updatePageCount.textContent = ('Page Count: ', data['items'][0]['volumeInfo']['pageCount']);
+            author.textContent = ('Author: ', data['items'][0]['volumeInfo']['authors']);
+            bookTitle.textContent = ('Title: ', data['items'][0]['volumeInfo']['title']);
+            publisher.textContent = ('Publisher: ', data['items'][0]['volumeInfo']['publisher']);
+            pageCount.textContent = ('Page Count: ', data['items'][0]['volumeInfo']['pageCount']);
             updateBuyLink.textContent = data['items'][0]['saleInfo']['buyLink'];
             buyLink.setAttribute('src', updateBuyLink)
 
